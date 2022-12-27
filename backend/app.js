@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const {
     json
 } = require('body-parser');
@@ -10,10 +11,20 @@ require('dotenv').config();
 const port = process.env.PORT || 3000;
 const app = express();
 app.use(express.json())
+app.use(cors())
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200 
+  }
+  app.get('/products/:id', cors(corsOptions), function (req, res, next) {
+    res.json({msg: 'This is CORS-enabled for only example.com.'})
+  })
+  
+
 
 //menuitem
 const menuRouter=require('./Routes/menuitemRouter')
-app.use('/api/menuitem',menuRouter);
+app.use('/api/menuitem',cors(corsOptions),menuRouter);
 
 
 
@@ -22,7 +33,7 @@ app.use('/api/menuitem',menuRouter);
 
 
 const TableRouter=require('./Routes/TableRouter')
-app.use('/api/table',TableRouter)
+app.use('/api/table',cors(corsOptions),TableRouter)
 
 
 
@@ -33,7 +44,7 @@ app.use('/api/table',TableRouter)
 
 
 const ingredientRouter=require('./Routes/ingredientRouter')
-app.use('/api/ingredient',ingredientRouter)
+app.use('/api/ingredient',cors(corsOptions),ingredientRouter)
 
 
 
@@ -42,12 +53,12 @@ app.use('/api/ingredient',ingredientRouter)
 //Extra
 
 const extraRouter=require('./Routes/extraRouter')
-app.use('/api/extra',extraRouter)
+app.use('/api/extra',cors(corsOptions),extraRouter)
 
 //Categories
 
 const CategoryRouter=require('./Routes/CategoryRouter')
-app.use('/api/Category',CategoryRouter)
+app.use('/api/Category',cors(corsOptions),CategoryRouter)
  
 
 
@@ -56,7 +67,7 @@ app.use('/api/Category',CategoryRouter)
 //Menu_ingredient
 
 const  MenuIngredientRouter=require('./Routes/menuIngredientRouter')
-app.use('/api/MenuIngredient',MenuIngredientRouter)
+app.use('/api/MenuIngredient',cors(corsOptions),MenuIngredientRouter)
 
 
  
