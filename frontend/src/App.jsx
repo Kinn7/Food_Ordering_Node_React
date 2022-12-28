@@ -1,14 +1,13 @@
 import React from 'react'
-import Sidebar from "./components/Sidebar"
-//import Menu from './components/Menu'
+import Menu from './components/Menu/Menu'
 
 
 function App() {
  
   return (
-    <div>
-      <Sidebar />
-    </div>
+   
+      <Menu />
+   
   )
 }
 
