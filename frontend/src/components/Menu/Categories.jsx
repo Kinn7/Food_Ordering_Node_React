@@ -8,7 +8,7 @@ const Categories = (props) => {
      
       <li className="w-100 ps-5 " key={i} >
         <a href="#" className="nav-link px-0 text-dark" >
-          <span className="d-none d-sm-inline text-white" onClick={() => props.handleClick(c.id)}>{c.categoryName}</span> 
+          <span className="d-none d-sm-inline text-white" onClick={() => {props.handleClick(c.id)} }>{c.categoryName}</span> 
         </a>
       </li>
   

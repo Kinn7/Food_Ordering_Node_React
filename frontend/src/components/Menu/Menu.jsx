@@ -11,16 +11,49 @@ const Menu = () => {
     }])
 
     //menuItem state to set it in the middle of the page to get food lists i.e get's list of food from categoryId
-    const [menuItem, setMenuItem] = useState([{}])
+    const [menuItem, setMenuItem] = useState([{
+       
+    }])
 
     //foodId state to change re render cards component when clicking on the different categories
     const [foodId, setFoodId] = useState(0)
+
+    //food name to display on the cart
+    const[foodName , setFoodName] = useState([])
 
 
     //this function accepts id of category from Categories component and passed it to setFoodId to set foodId state
     function getMenuItem(id){
         setFoodId(id) //setting foodId will trigger useEffect and re-render the component of Cards.jx to get the food items
+    }   
+
+
+ function getFood(id,menuItemName){
+
+    let checkFoodExists = false
+    foodName.map(food => {
+        /*
+        foodName length is greater than 0 and content of foodname is equal to menuItem 
+        selected then set check to false to avoid adding same food item in the foodName state array
+        */
+        if(foodName.length > 0 && food == menuItemName){ 
+            checkFoodExists = true
+        }
+    })
+
+    if(!checkFoodExists){
+        setFoodName(prevState =>{ 
+            return [...prevState, menuItemName ]               
+            })          
+        
     }
+
+}
+
+
+
+   console.log(foodName)
+
 
 
     //this useEffect runs to get api of food items based on category id 
@@ -53,10 +86,10 @@ const Menu = () => {
                 <Categories category = {category} handleClick={getMenuItem}/>
               
                 {/* Cards component that passes property of menuItem to iterate the foodLists in the Cards component */}
-                <Cards menuItem = {menuItem} />
+                <Cards menuItem = {menuItem} handleClick={getFood}  />
 
                 {/* Cart Component */}
-                <Cart />
+                <Cart food = {foodName} />
                 
             </div>
         </div>
