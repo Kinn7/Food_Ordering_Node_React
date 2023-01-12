@@ -3,7 +3,6 @@ import Categories from "./Categories";
 import Cards from "./Cards";
 import Cart from "./Cart";
 
-
 const Menu = () => {
     //category state to set in the sidebar
     const [category , setCategory] = useState([{
@@ -26,6 +25,12 @@ const Menu = () => {
     function getMenuItem(id){
         setFoodId(id) //setting foodId will trigger useEffect and re-render the component of Cards.jx to get the food items
     }   
+
+    //remove food from cart
+    function removeFood(food){
+        const foods = foodName.filter(f => f!=food) //set foods where foodName is not the same as food recieved from the cart
+        setFoodName(foods)
+    }
 
 
  function getFood(id,menuItemName){
@@ -50,10 +55,7 @@ const Menu = () => {
 
 }
 
-
-
    console.log(foodName)
-
 
 
     //this useEffect runs to get api of food items based on category id 
@@ -70,14 +72,7 @@ const Menu = () => {
         .then(res => res.json())
         .then(data => setCategory(data.category))
     },[])
-
-
-
-
-
-
-
- 
+//console.log(foodName)
     return (
         <div className="container-fluid">
             <div className="row flex-nowrap">
@@ -89,7 +84,7 @@ const Menu = () => {
                 <Cards menuItem = {menuItem} handleClick={getFood}  />
 
                 {/* Cart Component */}
-                <Cart food = {foodName} />
+                <Cart food = {foodName} handleClick={removeFood}/>
                 
             </div>
         </div>
