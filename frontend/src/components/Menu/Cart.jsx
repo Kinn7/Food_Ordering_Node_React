@@ -1,21 +1,37 @@
 import React from "react";
 
 const Cart = (props) => {
+
+
+// function handleChange(food){
+//   props.food.filter(f => f!=food)
+//     const f = props.food.filter(f => f!=food)
+//     console.log(f)
+    
+//   }
+
+  
+
     const foods = props.food.map((food,i) => (
         <li className="w-100 ps-5 " key={i} >
         <a href="#" className="nav-link px-0 text-dark" >
-          <span className="d-none d-sm-inline text-dark" > {food}</span> 
+          <span className="d-none d-sm-inline text-dark" > {food}</span>
         </a>
+        <div>
+        <input type ="text" placeholder="add note here"/> <button onClick={() => {props.handleClick(food)} }>remove item</button> 
+        </div>
       </li>
     ))
+
+
+  
+//      console.log(props.food)
     return (
         <div className="col-auto col-md-3 col-xl-2 px-sm-0 px-0  " style={{ backgroundColor : '#F5EEDC' }}>
         <div className="d-flex flex-column align-items-center align-items-sm-start px-0 pt-2 text-white min-vh-100">
-               <p>hello there</p>
                <ul className="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu" >
-                    <span className=" d-none d-sm-inline  ps-3  " style={{ fontSize : 35 , color : '#E5E5CB'}}>ABC  Restaurant</span>
                     <li className="nav-item pt-5 " >
-                      <span className="ms-1 d-none d-sm-inline   " style={{ fontStyle : "italic", fontWeight : "bold", fontSize : 32, fontFamily : 'pristina'  }}>Foods & Drinks</span>
+                      <span className="ms-5 d-none d-sm-inline  text-dark " style={{ fontStyle : "italic", fontWeight : "bold", fontSize : 32, fontFamily : 'pristina'  }}>your selections</span>
                     </li>
                     {/* <li className="w-100 ps-5 "  >
         <a href="#" className="nav-link px-0 text-dark" >
